@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<meta-runner name="PVS Studio">
+  <description>Run PVS Studio analysis</description>
+  <settings>
+    <parameters>
+      <!-- Mandatory Fields -->
+      <param name="teamcity.tool.pvs-studio.runner.pvs-studio-path" value="" spec="text description='PVS Studio installation folder' display='normal' label='PVS Studio installation folder' validationMode='not_empty'" />
+      <param name="teamcity.tool.pvs-studio.runner.solution-path" value="" spec="text description='Solution to analyze' display='normal' label='Solution to analyze' validationMode='not_empty'" />
+    </parameters>
+    <build-runners>
+      <runner name="" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA["%teamcity.tool.pvs-studio.runner.pvs-studio-path%\PVS-Studio_Cs.exe" -r -o "%env.TEMP%\PvsStudioResults_%build.number%.xml" -t %teamcity.build.checkoutDir%/%teamcity.tool.pvs-studio.runner.solution-path%
+%teamcity.agent.tools.dir%\pvs-studio-build-runner\bin\msxsl.exe "%env.TEMP%\PvsStudioResults_%build.number%.xml" %teamcity.agent.tools.dir%\pvs-studio-build-runner\bin\ResharperReport.xslt -o "%env.TEMP%\PvsStudioInspectCode_%build.number%.xml"
+echo ##teamcity[importData type='ReSharperInspectCode' path='%env.TEMP%\PvsStudioInspectCode_%build.number%.xml']]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <requirements />
+  </settings>
+</meta-runner>
