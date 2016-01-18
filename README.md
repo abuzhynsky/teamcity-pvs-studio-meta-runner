@@ -22,4 +22,5 @@ The plugin has been tested on Team City 9.1.5, but should work with any version 
 
 To build the plugin from code, use MSBuild to run _package.msbuild_, this will create the pvs-studio-build-runner.zip file. The [MSBuild Community Tasks](https://github.com/loresoft/msbuildtasks) must be installed to run this.
 
+### Credits
 Inspired by [Team City xUnit Meta Runner](https://github.com/rhysgodfrey/team-city-xunit-meta-runner).
