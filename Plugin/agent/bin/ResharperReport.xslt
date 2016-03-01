@@ -55,6 +55,13 @@
 
     <xsl:template match="ErrorCode">
         <xsl:variable name="error-code" select="text()"/>
-        <xsl:copy-of select="$issueTypes/IssueTypes/IssueType[@Id=$error-code]"/>
-    </xsl:template>
+		<xsl:choose>
+			<xsl:when test="$issueTypes/IssueTypes/IssueType[@Id=$error-code]">
+				<xsl:copy-of select="$issueTypes/IssueTypes/IssueType[@Id=$error-code]"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<IssueType Id="{$error-code}" Category="General Analysis" SubCategory="{$error-code}. Unknown inspection. Please update plugin." Description="{$error-code}. Unknown inspection." Severity="WARNING" Global="True" />
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
 </xsl:stylesheet>
