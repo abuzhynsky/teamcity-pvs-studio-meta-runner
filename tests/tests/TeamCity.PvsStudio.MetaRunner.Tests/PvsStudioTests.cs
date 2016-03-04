@@ -12,6 +12,13 @@ namespace TeamCity.PvsStudio.MetaRunner.Tests
 {
     public class PvsStudioTests
     {
+        private const string CategoryGeneralAnalysis = "General Analysis";
+        private const string CategoryMissing = "Unknown Inspections";
+
+        private const string ErrorCode3001 = "V3001";
+        private const string ErrorCode3010 = "V3010";
+        private const string ErrorCodeMissing = "V9999";
+
         public PvsStudioTests()
         {
             DeleteExistingFile(PluginParameters.PvsStudioOutputPath);
@@ -26,8 +33,8 @@ namespace TeamCity.PvsStudio.MetaRunner.Tests
 
             var expectedErrorCodes = new List<PvsStudioExpectedErrorCode>
             {
-                new PvsStudioExpectedErrorCode("V3001", 1),
-                new PvsStudioExpectedErrorCode("V3010", 1)
+                new PvsStudioExpectedErrorCode(ErrorCode3001, CategoryGeneralAnalysis, 1, 1),
+                new PvsStudioExpectedErrorCode(ErrorCode3010, CategoryGeneralAnalysis, 1, 1)
             };
 
             AssertValidPvsStudioAnalysisReport(PluginParameters.PvsStudioOutputPath, expectedErrorCodes);
@@ -41,8 +48,8 @@ namespace TeamCity.PvsStudio.MetaRunner.Tests
 
             var expectedErrorCodes = new List<PvsStudioExpectedErrorCode>
             {
-                new PvsStudioExpectedErrorCode("V3001", 1),
-                new PvsStudioExpectedErrorCode("V9999", 2)
+                new PvsStudioExpectedErrorCode(ErrorCode3001, CategoryGeneralAnalysis, 1, 1),
+                new PvsStudioExpectedErrorCode(ErrorCodeMissing, CategoryMissing, 2, 2)
             };
 
             AssertValidResharperAnalysisReport(PluginParameters.XsltOutputPath, expectedErrorCodes);
@@ -56,8 +63,8 @@ namespace TeamCity.PvsStudio.MetaRunner.Tests
 
             var expectedErrorCodes = new List<PvsStudioExpectedErrorCode>
             {
-                new PvsStudioExpectedErrorCode("V3001", 1),
-                new PvsStudioExpectedErrorCode("V3010", 1)
+                new PvsStudioExpectedErrorCode(ErrorCode3001, CategoryGeneralAnalysis, 1, 1),
+                new PvsStudioExpectedErrorCode(ErrorCode3010, CategoryGeneralAnalysis, 1, 1)
             };
 
             AssertValidPvsStudioAnalysisReport(PluginParameters.PvsStudioOutputPath, expectedErrorCodes);
@@ -133,6 +140,14 @@ namespace TeamCity.PvsStudio.MetaRunner.Tests
 
             Assert.NotNull(issueTypeElements);
             Assert.Equal(expectedErrorCodes.Count, issueTypeElements.Count);
+
+            foreach (var expectedErrorCode in expectedErrorCodes)
+            {
+                var issueType = Assert.Single(issueTypeElements, _ => _.Attribute("Id").Value == expectedErrorCode.ErrorCode);
+                Assert.NotNull(issueType);
+                Assert.Equal($"PVS-Studio {expectedErrorCode.Category}. Priority: {expectedErrorCode.Priority}", issueType.Attribute("Category").Value);
+                Assert.Equal($"{issueType.Attribute("Id").Value}. {issueType.Attribute("Description").Value}", issueType.Attribute("SubCategory").Value);
+            }
 
             var issuesElement = reportElement.Element("Issues");
             Assert.NotNull(issuesElement);
