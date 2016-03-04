@@ -74,7 +74,7 @@
   </PVS-Studio_Analysis_Log>
   <PVS-Studio_Analysis_Log>
     <FavIcon>false</FavIcon>
-    <Level>1</Level>
+    <Level>2</Level>
     <DefaultOrder>2</DefaultOrder>
     <ErrorCode>V9999</ErrorCode>
     <Message>The return value of function 'Replace' is required to be utilized.</Message>
@@ -93,7 +93,7 @@
   </PVS-Studio_Analysis_Log>
   <PVS-Studio_Analysis_Log>
     <FavIcon>false</FavIcon>
-    <Level>1</Level>
+    <Level>2</Level>
     <DefaultOrder>2</DefaultOrder>
     <ErrorCode>V9999</ErrorCode>
     <Message>The return value of function 'Replace' is required to be utilized.</Message>

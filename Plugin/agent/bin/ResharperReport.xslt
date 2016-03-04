@@ -55,12 +55,32 @@
 
     <xsl:template match="ErrorCode">
         <xsl:variable name="error-code" select="text()"/>
+        <xsl:variable name="issue-type" select="$issueTypes/IssueTypes/IssueType[@Id=$error-code]"/>
 		<xsl:choose>
-			<xsl:when test="$issueTypes/IssueTypes/IssueType[@Id=$error-code]">
-				<xsl:copy-of select="$issueTypes/IssueTypes/IssueType[@Id=$error-code]"/>
+			<xsl:when test="$issue-type">
+				<xsl:element name="IssueType">
+					<xsl:attribute name="Id">
+						<xsl:value-of select="$issue-type/@Id" />
+					</xsl:attribute>
+					<xsl:attribute name="Category">
+						<xsl:value-of select="concat('PVS-Studio ', $issue-type/@Category, '. Priority: ', current()/../Level/text())" />
+					</xsl:attribute>
+					<xsl:attribute name="SubCategory">
+						<xsl:value-of select="concat($issue-type/@Id, '. ' $issue-type/@SubCategory)" />
+					</xsl:attribute>
+					<xsl:attribute name="Description">
+						<xsl:value-of select="$issue-type/@SubCategory" />
+					</xsl:attribute>
+					<xsl:attribute name="Severity">
+						<xsl:value-of select="$issue-type/@Severity" />
+					</xsl:attribute>
+					<xsl:attribute name="Global">
+						<xsl:value-of select="$issue-type/@Global" />
+					</xsl:attribute>
+				</xsl:element>
 			</xsl:when>
 			<xsl:otherwise>
-				<IssueType Id="{$error-code}" Category="General Analysis" SubCategory="{$error-code}. Unknown inspection. Please update plugin." Description="{$error-code}. Unknown inspection." Severity="WARNING" Global="True" />
+				<IssueType Id="{$error-code}" Category="PVS-Studio Unknown Inspections. Priority: {current()/../Level/text()}" SubCategory="{$error-code}. Unknown inspection. Please update plugin." Description="Unknown inspection. Please update plugin." Severity="WARNING" Global="True" />
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
