@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output method="xml" indent="yes" encoding="UTF-8"/>
+	<xsl:param name="treatPriority1IssuesAsErrors" select="treatPriority1IssuesAsErrors"/>
     <xsl:key name="project" match="PVS-Studio_Analysis_Log" use="Project" />
     <xsl:key name="errorCode" match="PVS-Studio_Analysis_Log" use="ErrorCode" />
     <xsl:variable name="issueTypes" select="document('PvsStudioIssueTypes.xml')" />
@@ -14,10 +15,10 @@
                     <Element>Solution</Element>
                 </InspectionScope>
             </Information>
-            <xsl:apply-templates select="NewDataSet/PVS-Studio_Analysis_Log[generate-id(.)=generate-id(key('project',Project)[1])]" />
-            <IssueTypes>
+			<IssueTypes>
                 <xsl:apply-templates select="NewDataSet/PVS-Studio_Analysis_Log[generate-id(.)=generate-id(key('errorCode',ErrorCode)[1])]/ErrorCode" />
             </IssueTypes>
+            <xsl:apply-templates select="NewDataSet/PVS-Studio_Analysis_Log[generate-id(.)=generate-id(key('project',Project)[1])]" />
         </Report>
 
     </xsl:template>
@@ -56,6 +57,7 @@
     <xsl:template match="ErrorCode">
         <xsl:variable name="error-code" select="text()"/>
         <xsl:variable name="issue-type" select="$issueTypes/IssueTypes/IssueType[@Id=$error-code]"/>
+        <xsl:variable name="issue-priority" select="current()/../Level/text()"/>
 		<xsl:choose>
 			<xsl:when test="$issue-type">
 				<xsl:element name="IssueType">
@@ -63,7 +65,7 @@
 						<xsl:value-of select="$issue-type/@Id" />
 					</xsl:attribute>
 					<xsl:attribute name="Category">
-						<xsl:value-of select="concat('PVS-Studio ', $issue-type/@Category, '. Priority: ', current()/../Level/text())" />
+						<xsl:value-of select="concat('PVS-Studio ', $issue-type/@Category, '. Priority: ', $issue-priority)" />
 					</xsl:attribute>
 					<xsl:attribute name="SubCategory">
 						<xsl:value-of select="concat($issue-type/@Id, '. ' $issue-type/@SubCategory)" />
@@ -71,16 +73,20 @@
 					<xsl:attribute name="Description">
 						<xsl:value-of select="$issue-type/@SubCategory" />
 					</xsl:attribute>
-					<xsl:attribute name="Severity">
-						<xsl:value-of select="$issue-type/@Severity" />
-					</xsl:attribute>
-					<xsl:attribute name="Global">
-						<xsl:value-of select="$issue-type/@Global" />
-					</xsl:attribute>
+					<xsl:choose>
+						<xsl:when test="$treatPriority1IssuesAsErrors = '1' and $issue-priority = '1'">
+							<xsl:attribute name="Severity">ERROR</xsl:attribute>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:attribute name="Severity">
+								<xsl:value-of select="$issue-type/@Severity" />
+							</xsl:attribute>
+						</xsl:otherwise>
+					</xsl:choose>
 				</xsl:element>
 			</xsl:when>
 			<xsl:otherwise>
-				<IssueType Id="{$error-code}" Category="PVS-Studio Unknown Inspections. Priority: {current()/../Level/text()}" SubCategory="{$error-code}. Unknown inspection. Please update plugin." Description="Unknown inspection. Please update plugin." Severity="WARNING" Global="True" />
+				<IssueType Id="{$error-code}" Category="PVS-Studio Unknown Inspections. Priority: {$issue-priority}" SubCategory="{$error-code}. Unknown inspection. Please update plugin." Description="Unknown inspection. Please update plugin." Severity="WARNING" />
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>

@@ -43,7 +43,7 @@ namespace TeamCity.PvsStudio.MetaRunner.Tests
         [Fact]
         public async Task UnknownIssueTypeXsltOutputTest()
         {
-            var xsltResult = await ProcessEx.RunAsync(PluginParameters.MsXslPath, PluginParameters.GenerateXsltParameters(PluginParameters.UnknownIssueTypeReportPath));
+            var xsltResult = await ProcessEx.RunAsync(PluginParameters.MsXslPath, PluginParameters.GenerateXsltParameters(PluginParameters.UnknownIssueTypeReportPath, false));
             AssertSuccessfulProcessCompletion(xsltResult);
 
             var expectedErrorCodes = new List<PvsStudioExpectedErrorCode>
@@ -52,7 +52,22 @@ namespace TeamCity.PvsStudio.MetaRunner.Tests
                 new PvsStudioExpectedErrorCode(ErrorCodeMissing, CategoryMissing, 2, 2)
             };
 
-            AssertValidResharperAnalysisReport(PluginParameters.XsltOutputPath, expectedErrorCodes);
+            AssertValidResharperAnalysisReport(PluginParameters.XsltOutputPath, expectedErrorCodes, false);
+        }
+
+        [Fact]
+        public async Task TreatPriority1IssuesAsErrorsXsltOutputTest()
+        {
+            var xsltResult = await ProcessEx.RunAsync(PluginParameters.MsXslPath, PluginParameters.GenerateXsltParameters(PluginParameters.UnknownIssueTypeReportPath, true));
+            AssertSuccessfulProcessCompletion(xsltResult);
+
+            var expectedErrorCodes = new List<PvsStudioExpectedErrorCode>
+            {
+                new PvsStudioExpectedErrorCode(ErrorCode3001, CategoryGeneralAnalysis, 1, 1),
+                new PvsStudioExpectedErrorCode(ErrorCodeMissing, CategoryMissing, 2, 2)
+            };
+
+            AssertValidResharperAnalysisReport(PluginParameters.XsltOutputPath, expectedErrorCodes, true);
         }
 
         [Fact]
@@ -72,7 +87,7 @@ namespace TeamCity.PvsStudio.MetaRunner.Tests
             var xsltResult = await ProcessEx.RunAsync(PluginParameters.MsXslPath, PluginParameters.MsXslParameters);
             AssertSuccessfulProcessCompletion(xsltResult);
 
-            AssertValidResharperAnalysisReport(PluginParameters.XsltOutputPath, expectedErrorCodes);
+            AssertValidResharperAnalysisReport(PluginParameters.XsltOutputPath, expectedErrorCodes, false);
         }
 
         private static void DeleteExistingFile(string filePath)
@@ -123,7 +138,7 @@ namespace TeamCity.PvsStudio.MetaRunner.Tests
         }
 
         [AssertionMethod]
-        private static void AssertValidResharperAnalysisReport(string filePath, ICollection<PvsStudioExpectedErrorCode> expectedErrorCodes)
+        private static void AssertValidResharperAnalysisReport(string filePath, ICollection<PvsStudioExpectedErrorCode> expectedErrorCodes, bool treatPriority1IssuesAsErrors)
         {
             AssertFileExists(filePath);
 
@@ -143,10 +158,7 @@ namespace TeamCity.PvsStudio.MetaRunner.Tests
 
             foreach (var expectedErrorCode in expectedErrorCodes)
             {
-                var issueType = Assert.Single(issueTypeElements, _ => _.Attribute("Id").Value == expectedErrorCode.ErrorCode);
-                Assert.NotNull(issueType);
-                Assert.Equal($"PVS-Studio {expectedErrorCode.Category}. Priority: {expectedErrorCode.Priority}", issueType.Attribute("Category").Value);
-                Assert.Equal($"{issueType.Attribute("Id").Value}. {issueType.Attribute("Description").Value}", issueType.Attribute("SubCategory").Value);
+                AssertResharperIssueTypes(issueTypeElements, expectedErrorCode, treatPriority1IssuesAsErrors);
             }
 
             var issuesElement = reportElement.Element("Issues");
@@ -159,6 +171,25 @@ namespace TeamCity.PvsStudio.MetaRunner.Tests
 
             Assert.NotNull(issueElements);
             Assert.Equal(expectedErrorCodes.Select(_ => _.OccurrenceCount).Sum(), issueElements.Count);
+        }
+
+        [AssertionMethod]
+        private static void AssertResharperIssueTypes(IEnumerable<XElement> issueTypeElements, PvsStudioExpectedErrorCode expectedErrorCode, bool treatPriority1IssuesAsErrors)
+        {
+            var issueType = Assert.Single(issueTypeElements, _ => _.Attribute("Id").Value == expectedErrorCode.ErrorCode);
+            Assert.NotNull(issueType);
+
+            Assert.Equal($"PVS-Studio {expectedErrorCode.Category}. Priority: {expectedErrorCode.Priority}", issueType.Attribute("Category").Value);
+            Assert.Equal($"{issueType.Attribute("Id").Value}. {issueType.Attribute("Description").Value}", issueType.Attribute("SubCategory").Value);
+
+            AssertSeverity(expectedErrorCode, issueType, treatPriority1IssuesAsErrors);
+        }
+
+        [AssertionMethod]
+        private static void AssertSeverity(PvsStudioExpectedErrorCode expectedErrorCode, XElement issueType, bool treatPriority1IssuesAsErrors)
+        {
+            var expectedSeverity = treatPriority1IssuesAsErrors && expectedErrorCode.Priority == 1 ? "ERROR" : "WARNING";
+            Assert.Equal(expectedSeverity, issueType.Attribute("Severity").Value);
         }
     }
 }

@@ -33,12 +33,12 @@ namespace TeamCity.PvsStudio.MetaRunner.Tests.Helpers
 
         public static string MsXslParameters
         {
-            get { return GenerateXsltParameters(PvsStudioOutputPath); }
+            get { return GenerateXsltParameters(PvsStudioOutputPath, false); }
         }
 
-        public static string GenerateXsltParameters(string inputPath)
+        public static string GenerateXsltParameters(string inputPath, bool treatPriority1IssuesAsErrors)
         {
-            return $"{inputPath} {XsltPath} -o {XsltOutputPath}";
+            return $@"{inputPath} {XsltPath} -o {XsltOutputPath} treatPriority1IssuesAsErrors=""{Convert.ToInt32(treatPriority1IssuesAsErrors)}""";
         }
 
         public static string UnknownIssueTypeReportPath
