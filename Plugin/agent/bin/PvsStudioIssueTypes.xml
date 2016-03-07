@@ -1,59 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <IssueTypes>
-    <IssueType Id="V3001" Category="General Analysis" SubCategory="There are identical sub-expressions to the left and to the right of the 'foo' operator." Severity="WARNING" Global="True" />
-    <IssueType Id="V3002" Category="General Analysis" SubCategory="The switch statement does not cover all values of the enum." Severity="WARNING" Global="True" />
-    <IssueType Id="V3003" Category="General Analysis" SubCategory="The use of 'if (A) {...} else if (A) {...}' pattern was detected. There is a probability of logical error presence." Severity="WARNING" Global="True" />
-    <IssueType Id="V3004" Category="General Analysis" SubCategory="The 'then' statement is equivalent to the 'else' statement." Severity="WARNING" Global="True" />
-    <IssueType Id="V3005" Category="General Analysis" SubCategory="The 'x' variable is assigned to itself." Severity="WARNING" Global="True" />
-    <IssueType Id="V3006" Category="General Analysis" SubCategory="The object was created but it is not being used. The 'throw' keyword could be missing." Severity="WARNING" Global="True" />
-    <IssueType Id="V3007" Category="General Analysis" SubCategory="Odd semicolon ';' after 'if/for/while' operator." Severity="WARNING" Global="True" />
-    <IssueType Id="V3008" Category="General Analysis" SubCategory="The 'x' variable is assigned values twice successively. Perhaps this is a mistake." Severity="WARNING" Global="True" />
-    <IssueType Id="V3009" Category="General Analysis" SubCategory="Its odd that the method always returns one and the same value." Severity="WARNING" Global="True" />
-    <IssueType Id="V3010" Category="General Analysis" SubCategory="The return value of function 'Foo' is required to be utilized." Severity="WARNING" Global="True" />
-    <IssueType Id="V3011" Category="General Analysis" SubCategory="Two opposite conditions were encountered. The second condition is always false." Severity="WARNING" Global="True" />
-    <IssueType Id="V3012" Category="General Analysis" SubCategory="The '?:' operator, regardless of its conditional expression, always returns one and the same value." Severity="WARNING" Global="True" />
-    <IssueType Id="V3013" Category="General Analysis" SubCategory="It is odd that the body of 'Foo_1' function is fully equivalent to the body of 'Foo_2' function." Severity="WARNING" Global="True" />
-    <IssueType Id="V3014" Category="General Analysis" SubCategory="It is likely that a wrong variable is being incremented inside the 'for' operator." Severity="WARNING" Global="True" />
-    <IssueType Id="V3015" Category="General Analysis" SubCategory="It is likely that a wrong variable is being compared inside the 'for' operator." Severity="WARNING" Global="True" />
-    <IssueType Id="V3016" Category="General Analysis" SubCategory="The variable is being used for this loop and for the outer loop." Severity="WARNING" Global="True" />
-    <IssueType Id="V3017" Category="General Analysis" SubCategory="A pattern was detected: A II (A &amp;&amp; ...). The expression is excessive or contains a logical error." Severity="WARNING" Global="True" />
-    <IssueType Id="V3018" Category="General Analysis" SubCategory="Consider inspecting the application's logic. Its possible that 'else' keyword is missing." Severity="WARNING" Global="True" />
-    <IssueType Id="V3019" Category="General Analysis" SubCategory="It is possible that an incorrect variable is compared with null after type conversion using as keyword." Severity="WARNING" Global="True" />
-    <IssueType Id="V3020" Category="General Analysis" SubCategory="An unconditional 'break/continue/return/goto' within a loop." Severity="WARNING" Global="True" />
-    <IssueType Id="V3021" Category="General Analysis" SubCategory="There are two if statements with identical conditional expressions. The first if statement contains method return. This means that the second if statement is senseless." Severity="WARNING" Global="True" />
-    <IssueType Id="V3022" Category="General Analysis" SubCategory="Expression is always true/false." Severity="WARNING" Global="True" />
-    <IssueType Id="V3023" Category="General Analysis" SubCategory="Consider inspecting this expression. The expression is excessive or contains a misprint." Severity="WARNING" Global="True" />
-    <IssueType Id="V3024" Category="General Analysis" SubCategory="An odd precise comparison. Consider using a comparison with defined precision: Math.Abs(A - B) &lt; Epsilon or Math.Abs(A - B) &gt; Epsilon." Severity="WARNING" Global="True" />
-    <IssueType Id="V3025" Category="General Analysis" SubCategory="Incorrect format. Consider checking the N actual argument of the 'Foo' function." Severity="WARNING" Global="True" />
-    <IssueType Id="V3026" Category="General Analysis" SubCategory="The constant NN is being utilized. The resulting value could be inaccurate. Consider using the KK constant." Severity="WARNING" Global="True" />
-    <IssueType Id="V3027" Category="General Analysis" SubCategory="The variable was utilized in the logical expression before it was verified against null in the same logical expression." Severity="WARNING" Global="True" />
-    <IssueType Id="V3028" Category="General Analysis" SubCategory="Consider inspecting the for operator. Initial and final values of the iterator are the same." Severity="WARNING" Global="True" />
-    <IssueType Id="V3029" Category="General Analysis" SubCategory="The conditional expressions of the 'if' operators situated alongside each other are identical." Severity="WARNING" Global="True" />
-    <IssueType Id="V3030" Category="General Analysis" SubCategory="Recurring check. This condition was already verified in previous line" Severity="WARNING" Global="True" />
-    <IssueType Id="V3031" Category="General Analysis" SubCategory="An excessive check can be simplified. The 'II' operator is surrounded by opposite expressions 'x' and 'Ix'." Severity="WARNING" Global="True" />
-    <IssueType Id="V3032" Category="General Analysis" SubCategory="Waiting on this expression is unreliable, as compiler may optimize some of the variables. Use volatile variable(s) or synchronization primitives to avoid this." Severity="WARNING" Global="True" />
-    <IssueType Id="V3033" Category="General Analysis" SubCategory="It is possible that this 'else' branch must apply to the previous if statement." Severity="WARNING" Global="True" />
-    <IssueType Id="V3034" Category="General Analysis" SubCategory="Consider inspecting the expression. Probably '!=' or '== !' should be used here." Severity="WARNING" Global="True" />
-    <IssueType Id="V3035" Category="General Analysis" SubCategory="Consider inspecting the expression. Probably '+=' should be used here." Severity="WARNING" Global="True" />
-    <IssueType Id="V3036" Category="General Analysis" SubCategory="Consider inspecting the expression. Probably '-=' should be used here." Severity="WARNING" Global="True" />
-    <IssueType Id="V3037" Category="General Analysis" SubCategory="An odd sequence of assignments of this kind: A = B; B = A;" Severity="WARNING" Global="True" />
-    <IssueType Id="V3038" Category="General Analysis" SubCategory="The 'first' argument of 'Foo' function is equal to the 'second' argument." Severity="WARNING" Global="True" />
-    <IssueType Id="V3039" Category="General Analysis" SubCategory="Consider inspecting the 'Foo' function call. Defining an absolute path to the file or directory is considered a poor style" Severity="WARNING" Global="True" />
-    <IssueType Id="V3040" Category="General Analysis" SubCategory="The expression was implicitly cast from integer type to real type. Consider utilizing an explicit type cast to avoid the loss of a fractional part." Severity="WARNING" Global="True" />
-    <IssueType Id="V3041" Category="General Analysis" SubCategory="The expression was implicitly cast from integer type to real type. Consider utilizing an explicit type cast to avoid the loss of a fractional part." Severity="WARNING" Global="True" />
-    <IssueType Id="V3042" Category="General Analysis" SubCategory="Possible NullReferenceException. The '?.' and '.' operators are used for accessing members of the same object." Severity="WARNING" Global="True" />
-    <IssueType Id="V3043" Category="General Analysis" SubCategory="The code's operational logic does not correspond with its formatting. The statement is indented to the right, but it is always executed. It is possible that curly brackets are missing." Severity="WARNING" Global="True" />
-    <IssueType Id="V3044" Category="General Analysis" SubCategory="WPF: writing and reading are performed on a different Dependency Properties." Severity="WARNING" Global="True" />
-    <IssueType Id="V3045" Category="General Analysis" SubCategory="WPF: the names of the property registered for DependencyProperty, and of the property used to access it, do not correspond with each other." Severity="WARNING" Global="True" />
-    <IssueType Id="V3046" Category="General Analysis" SubCategory="WPF: the type registered for DependencyProperty does not correspond with the type of the property used to access it." Severity="WARNING" Global="True" />
-    <IssueType Id="V3047" Category="General Analysis" SubCategory="WPF: a class containing registered property does not correspond with a type that is passed as the ownerType." Severity="WARNING" Global="True" />
-    <IssueType Id="V3048" Category="General Analysis" SubCategory="WPF: several Dependency Properties are registered with a same name within the owner type." Severity="WARNING" Global="True" />
-    <IssueType Id="V3049" Category="General Analysis" SubCategory="WPF: readonly field of 'DependencyProperty' type is not initialized." Severity="WARNING" Global="True" />
-    <IssueType Id="V3050" Category="General Analysis" SubCategory="Possibly an incorrect HTML. The &lt;/XX&gt; closing tag was encountered, while the &lt;/YY&gt; tag was expected." Severity="WARNING" Global="True" />
-    <IssueType Id="V3051" Category="General Analysis" SubCategory="An excessive type cast or check. The object is already of the same type." Severity="WARNING" Global="True" />
-    <IssueType Id="V3052" Category="General Analysis" SubCategory="The original exception object was swallowed. Stack of original exception could be lost." Severity="WARNING" Global="True" />
-    <IssueType Id="V3053" Category="General Analysis" SubCategory="An excessive expression. Examine the substrings 'abc' and 'abcd'." Severity="WARNING" Global="True" />
-    <IssueType Id="V3054" Category="General Analysis" SubCategory="Potentially unsafe double-checked locking. Use volatile variable(s) or synchronization primitives to avoid this." Severity="WARNING" Global="True" />
-    <IssueType Id="V3055" Category="General Analysis" SubCategory="Suspicious assignment inside the condition expression of 'if/while/for' operator." Severity="WARNING" Global="True" />
-    <IssueType Id="V3056" Category="General Analysis" SubCategory="Consider reviewing the correctness of 'X' item's usage." Severity="WARNING" Global="True" />
+    <IssueType Id="V3001" Category="General Analysis" SubCategory="There are identical sub-expressions to the left and to the right of the 'foo' operator." Severity="WARNING" />
+    <IssueType Id="V3002" Category="General Analysis" SubCategory="The switch statement does not cover all values of the enum." Severity="WARNING" />
+    <IssueType Id="V3003" Category="General Analysis" SubCategory="The use of 'if (A) {...} else if (A) {...}' pattern was detected. There is a probability of logical error presence." Severity="WARNING" />
+    <IssueType Id="V3004" Category="General Analysis" SubCategory="The 'then' statement is equivalent to the 'else' statement." Severity="WARNING" />
+    <IssueType Id="V3005" Category="General Analysis" SubCategory="The 'x' variable is assigned to itself." Severity="WARNING" />
+    <IssueType Id="V3006" Category="General Analysis" SubCategory="The object was created but it is not being used. The 'throw' keyword could be missing." Severity="WARNING" />
+    <IssueType Id="V3007" Category="General Analysis" SubCategory="Odd semicolon ';' after 'if/for/while' operator." Severity="WARNING" />
+    <IssueType Id="V3008" Category="General Analysis" SubCategory="The 'x' variable is assigned values twice successively. Perhaps this is a mistake." Severity="WARNING" />
+    <IssueType Id="V3009" Category="General Analysis" SubCategory="Its odd that the method always returns one and the same value." Severity="WARNING" />
+    <IssueType Id="V3010" Category="General Analysis" SubCategory="The return value of function 'Foo' is required to be utilized." Severity="WARNING" />
+    <IssueType Id="V3011" Category="General Analysis" SubCategory="Two opposite conditions were encountered. The second condition is always false." Severity="WARNING" />
+    <IssueType Id="V3012" Category="General Analysis" SubCategory="The '?:' operator, regardless of its conditional expression, always returns one and the same value." Severity="WARNING" />
+    <IssueType Id="V3013" Category="General Analysis" SubCategory="It is odd that the body of 'Foo_1' function is fully equivalent to the body of 'Foo_2' function." Severity="WARNING" />
+    <IssueType Id="V3014" Category="General Analysis" SubCategory="It is likely that a wrong variable is being incremented inside the 'for' operator." Severity="WARNING" />
+    <IssueType Id="V3015" Category="General Analysis" SubCategory="It is likely that a wrong variable is being compared inside the 'for' operator." Severity="WARNING" />
+    <IssueType Id="V3016" Category="General Analysis" SubCategory="The variable is being used for this loop and for the outer loop." Severity="WARNING" />
+    <IssueType Id="V3017" Category="General Analysis" SubCategory="A pattern was detected: A II (A &amp;&amp; ...). The expression is excessive or contains a logical error." Severity="WARNING" />
+    <IssueType Id="V3018" Category="General Analysis" SubCategory="Consider inspecting the application's logic. Its possible that 'else' keyword is missing." Severity="WARNING" />
+    <IssueType Id="V3019" Category="General Analysis" SubCategory="It is possible that an incorrect variable is compared with null after type conversion using as keyword." Severity="WARNING" />
+    <IssueType Id="V3020" Category="General Analysis" SubCategory="An unconditional 'break/continue/return/goto' within a loop." Severity="WARNING" />
+    <IssueType Id="V3021" Category="General Analysis" SubCategory="There are two if statements with identical conditional expressions. The first if statement contains method return. This means that the second if statement is senseless." Severity="WARNING" />
+    <IssueType Id="V3022" Category="General Analysis" SubCategory="Expression is always true/false." Severity="WARNING" />
+    <IssueType Id="V3023" Category="General Analysis" SubCategory="Consider inspecting this expression. The expression is excessive or contains a misprint." Severity="WARNING" />
+    <IssueType Id="V3024" Category="General Analysis" SubCategory="An odd precise comparison. Consider using a comparison with defined precision: Math.Abs(A - B) &lt; Epsilon or Math.Abs(A - B) &gt; Epsilon." Severity="WARNING" />
+    <IssueType Id="V3025" Category="General Analysis" SubCategory="Incorrect format. Consider checking the N actual argument of the 'Foo' function." Severity="WARNING" />
+    <IssueType Id="V3026" Category="General Analysis" SubCategory="The constant NN is being utilized. The resulting value could be inaccurate. Consider using the KK constant." Severity="WARNING" />
+    <IssueType Id="V3027" Category="General Analysis" SubCategory="The variable was utilized in the logical expression before it was verified against null in the same logical expression." Severity="WARNING" />
+    <IssueType Id="V3028" Category="General Analysis" SubCategory="Consider inspecting the for operator. Initial and final values of the iterator are the same." Severity="WARNING" />
+    <IssueType Id="V3029" Category="General Analysis" SubCategory="The conditional expressions of the 'if' operators situated alongside each other are identical." Severity="WARNING" />
+    <IssueType Id="V3030" Category="General Analysis" SubCategory="Recurring check. This condition was already verified in previous line" Severity="WARNING" />
+    <IssueType Id="V3031" Category="General Analysis" SubCategory="An excessive check can be simplified. The 'II' operator is surrounded by opposite expressions 'x' and 'Ix'." Severity="WARNING" />
+    <IssueType Id="V3032" Category="General Analysis" SubCategory="Waiting on this expression is unreliable, as compiler may optimize some of the variables. Use volatile variable(s) or synchronization primitives to avoid this." Severity="WARNING" />
+    <IssueType Id="V3033" Category="General Analysis" SubCategory="It is possible that this 'else' branch must apply to the previous if statement." Severity="WARNING" />
+    <IssueType Id="V3034" Category="General Analysis" SubCategory="Consider inspecting the expression. Probably '!=' or '== !' should be used here." Severity="WARNING" />
+    <IssueType Id="V3035" Category="General Analysis" SubCategory="Consider inspecting the expression. Probably '+=' should be used here." Severity="WARNING" />
+    <IssueType Id="V3036" Category="General Analysis" SubCategory="Consider inspecting the expression. Probably '-=' should be used here." Severity="WARNING" />
+    <IssueType Id="V3037" Category="General Analysis" SubCategory="An odd sequence of assignments of this kind: A = B; B = A;" Severity="WARNING" />
+    <IssueType Id="V3038" Category="General Analysis" SubCategory="The 'first' argument of 'Foo' function is equal to the 'second' argument." Severity="WARNING" />
+    <IssueType Id="V3039" Category="General Analysis" SubCategory="Consider inspecting the 'Foo' function call. Defining an absolute path to the file or directory is considered a poor style" Severity="WARNING" />
+    <IssueType Id="V3040" Category="General Analysis" SubCategory="The expression was implicitly cast from integer type to real type. Consider utilizing an explicit type cast to avoid the loss of a fractional part." Severity="WARNING" />
+    <IssueType Id="V3041" Category="General Analysis" SubCategory="The expression was implicitly cast from integer type to real type. Consider utilizing an explicit type cast to avoid the loss of a fractional part." Severity="WARNING" />
+    <IssueType Id="V3042" Category="General Analysis" SubCategory="Possible NullReferenceException. The '?.' and '.' operators are used for accessing members of the same object." Severity="WARNING" />
+    <IssueType Id="V3043" Category="General Analysis" SubCategory="The code's operational logic does not correspond with its formatting. The statement is indented to the right, but it is always executed. It is possible that curly brackets are missing." Severity="WARNING" />
+    <IssueType Id="V3044" Category="General Analysis" SubCategory="WPF: writing and reading are performed on a different Dependency Properties." Severity="WARNING" />
+    <IssueType Id="V3045" Category="General Analysis" SubCategory="WPF: the names of the property registered for DependencyProperty, and of the property used to access it, do not correspond with each other." Severity="WARNING" />
+    <IssueType Id="V3046" Category="General Analysis" SubCategory="WPF: the type registered for DependencyProperty does not correspond with the type of the property used to access it." Severity="WARNING" />
+    <IssueType Id="V3047" Category="General Analysis" SubCategory="WPF: a class containing registered property does not correspond with a type that is passed as the ownerType." Severity="WARNING" />
+    <IssueType Id="V3048" Category="General Analysis" SubCategory="WPF: several Dependency Properties are registered with a same name within the owner type." Severity="WARNING" />
+    <IssueType Id="V3049" Category="General Analysis" SubCategory="WPF: readonly field of 'DependencyProperty' type is not initialized." Severity="WARNING" />
+    <IssueType Id="V3050" Category="General Analysis" SubCategory="Possibly an incorrect HTML. The &lt;/XX&gt; closing tag was encountered, while the &lt;/YY&gt; tag was expected." Severity="WARNING" />
+    <IssueType Id="V3051" Category="General Analysis" SubCategory="An excessive type cast or check. The object is already of the same type." Severity="WARNING" />
+    <IssueType Id="V3052" Category="General Analysis" SubCategory="The original exception object was swallowed. Stack of original exception could be lost." Severity="WARNING" />
+    <IssueType Id="V3053" Category="General Analysis" SubCategory="An excessive expression. Examine the substrings 'abc' and 'abcd'." Severity="WARNING" />
+    <IssueType Id="V3054" Category="General Analysis" SubCategory="Potentially unsafe double-checked locking. Use volatile variable(s) or synchronization primitives to avoid this." Severity="WARNING" />
+    <IssueType Id="V3055" Category="General Analysis" SubCategory="Suspicious assignment inside the condition expression of 'if/while/for' operator." Severity="WARNING" />
+    <IssueType Id="V3056" Category="General Analysis" SubCategory="Consider reviewing the correctness of 'X' item's usage." Severity="WARNING" />
 </IssueTypes>
