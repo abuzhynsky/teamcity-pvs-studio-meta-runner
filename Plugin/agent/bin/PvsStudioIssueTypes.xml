@@ -56,4 +56,19 @@
     <IssueType Id="V3054" Category="General Analysis" SubCategory="Potentially unsafe double-checked locking. Use volatile variable(s) or synchronization primitives to avoid this." Severity="WARNING" />
     <IssueType Id="V3055" Category="General Analysis" SubCategory="Suspicious assignment inside the condition expression of 'if/while/for' operator." Severity="WARNING" />
     <IssueType Id="V3056" Category="General Analysis" SubCategory="Consider reviewing the correctness of 'X' item's usage." Severity="WARNING" />
+    <IssueType Id="V3057" Category="General Analysis" SubCategory="Function receives an odd argument." Severity="WARNING" />
+    <IssueType Id="V3058" Category="General Analysis" SubCategory="An item with the same key has already been added." Severity="WARNING" />
+    <IssueType Id="V3059" Category="General Analysis" SubCategory="Consider adding '[Flags]' attribute to the enum." Severity="WARNING" />
+    <IssueType Id="V3060" Category="General Analysis" SubCategory="A value of variable is not modified. Consider inspecting the expression. It is possible that other value should be present instead of '0'." Severity="WARNING" />
+    <IssueType Id="V3061" Category="General Analysis" SubCategory="Parameter 'A' is always rewritten in method body before being used." Severity="WARNING" />
+    <IssueType Id="V3062" Category="General Analysis" SubCategory="An object is used as an argument to its own method. Consider checking the first actual argument of the 'Foo' method." Severity="WARNING" />
+    <IssueType Id="V3063" Category="General Analysis" SubCategory="A part of conditional expression is always true/false." Severity="WARNING" />
+    <IssueType Id="V3064" Category="General Analysis" SubCategory="Division or mod division by zero." Severity="WARNING" />
+    <IssueType Id="V3065" Category="General Analysis" SubCategory="Parameter is not utilized inside method's body." Severity="WARNING" />
+    <IssueType Id="V3066" Category="General Analysis" SubCategory="Possible incorrect order of arguments passed to 'Foo' method." Severity="WARNING" />
+    <IssueType Id="V3067" Category="General Analysis" SubCategory="It is possible that 'else' block was forgotten or commented out, thus altering the program's operation logics." Severity="WARNING" />
+    <IssueType Id="V3068" Category="General Analysis" SubCategory="Calling overrideable class member from constructor is dangerous." Severity="WARNING" />
+    <IssueType Id="V3069" Category="General Analysis" SubCategory="It's possible that the line was commented out improperly, thus altering the program's operation logics." Severity="WARNING" />
+    <IssueType Id="V3070" Category="General Analysis" SubCategory="Uninitialized variables are used when initializing the 'A' variable." Severity="WARNING" />
+    <IssueType Id="V3071" Category="General Analysis" SubCategory="The object is returned from inside 'using' block. 'Dispose' will be invoked before exiting method." Severity="WARNING" />
 </IssueTypes>
